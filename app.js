@@ -54,6 +54,14 @@ app.use(function(req,res,next){
   // Get today given user's timezone
   var today;
 
+  // Surface boolean flags explicitly for templates
+  if (req.user && typeof req.user.is_admin === 'function') {
+    req.user.admin = req.user.is_admin();
+  }
+  if (req.user && typeof req.user.is_auto_approve === 'function') {
+    req.user.auto_approve = req.user.is_auto_approve();
+  }
+
   if ( req.user && req.user.company ) {
     today = req.user.company.get_today();
   } else {

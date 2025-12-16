@@ -16,6 +16,11 @@ var handlebars = require('express-handlebars')
     defaultLayout : 'main',
     extname       : '.hbs',
     helpers       : require('./lib/view/helpers')(),
+    // Allow Handlebars templates to access Sequelize instance properties/methods
+    runtimeOptions: {
+      allowProtoPropertiesByDefault: true,
+      allowProtoMethodsByDefault: true,
+    },
   });
 
 app.engine('.hbs', handlebars.engine);

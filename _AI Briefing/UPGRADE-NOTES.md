@@ -16,7 +16,8 @@ What changed
 - Team View rendering now awaits department calendars (`Promise.all`) to avoid undefined `days` during statistics injection.
 - Frontend single-click guard now inspects required fields via jQuery correctly (fixes `el.val is not a function` on login submit).
 - Admin/session middleware now forces boolean flags onto req.user so templates always see `admin`/`auto_approve` as booleans.
-- Users index route protects `validator.isNumeric` with an existence check (validator v13 strictness).
+- Users index route protects `validator.isNumeric` with an existence check (validator v13 strictness); user form parsing now safely trims optional fields to avoid validator assertString errors.
+- Handlebars runtime configured to allow prototype properties/methods so Sequelize instance fields render in templates (fixes missing names/admin flags and broken user edit URLs).
 
 Notes/issues
 - `npm install` completed with warnings about deprecated transitive dependencies (request/request-promise, ldapjs, uuid@3 pulled by deps). Not addressed in code; consider future replacements.
